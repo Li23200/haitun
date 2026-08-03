@@ -195,6 +195,7 @@ a { color: inherit; text-decoration: none; }
   text-align: left;
   margin: 0;
   color: #0f172a;
+  white-space: nowrap;
 }
 /* 仅HaiTun为蓝色 */
 .download-page-title .brand-name {
@@ -789,12 +790,17 @@ a { color: inherit; text-decoration: none; }
    ========================================== */
 .word-rotator {
   display: inline-block;
-  width: 180px; /* 固定宽度，足够容纳最长的中英文词汇 */
+  width: 4.2em;
+  white-space: nowrap;
   text-align: left; /* 与前面文字自然衔接 */
   vertical-align: bottom;
   position: relative;
   color: #0f172a;
   font-weight: 700;
+}
+
+html[lang^="en"] .word-rotator {
+  width: 8.5em;
 }
 
 .word-rotator.animating {
