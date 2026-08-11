@@ -12,6 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&display=swap" rel="stylesheet">
   {{ $style := resources.Get "css/main.css" | resources.Minify }}
   <link rel="stylesheet" href="{{ $style.RelPermalink }}">
+  {{ partial "analytics.html" . }}
 </head>
 <body class="is-download-page" id="top">
   <header class="nav">

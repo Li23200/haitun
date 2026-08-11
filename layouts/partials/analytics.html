@@ -1,0 +1,6 @@
+{{ if .Site.Params.analytics.enabled }}
+<script>
+  window.HAITUN_ANALYTICS = {{ .Site.Params.analytics | jsonify }};
+</script>
+<script src="{{ "scripts/analytics.js" | relURL }}" defer></script>
+{{ end }}
