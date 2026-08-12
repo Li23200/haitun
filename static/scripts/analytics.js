@@ -2,6 +2,13 @@
   'use strict';
 
   var cfg = window.HAITUN_ANALYTICS || {};
+  if (typeof cfg === 'string') {
+    try {
+      cfg = JSON.parse(cfg);
+    } catch (e) {
+      cfg = {};
+    }
+  }
   if (!cfg.enabled || !cfg.endpoint) return;
 
   var endpoint = cfg.endpoint;
@@ -74,15 +81,15 @@
       props: props || {}
     };
     var body = JSON.stringify(payload);
-    if (navigator.sendBeacon) {
-      navigator.sendBeacon(endpoint, new Blob([body], { type: 'application/json' }));
-    } else {
+    if (window.fetch) {
       fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: body,
         keepalive: true
       }).catch(function () {});
+    } else if (navigator.sendBeacon) {
+      navigator.sendBeacon(endpoint, new Blob([body], { type: 'application/json' }));
     }
   }
 
