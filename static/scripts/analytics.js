@@ -52,6 +52,12 @@
     }
   }
 
+  // The collector stores this timestamp as-is, so report Beijing time (UTC+8).
+  function nowIso() {
+    var beijing = new Date(Date.now() + 8 * 60 * 60 * 1000);
+    return beijing.toISOString().replace('Z', '+08:00');
+  }
+
   function detectOS() {
     var ua = navigator.userAgent.toLowerCase();
     if (/windows|win/.test(ua)) return 'windows';
@@ -77,7 +83,7 @@
       device: detectDevice(),
       clientId: getClientId(),
       sessionId: getSessionId(),
-      ts: new Date().toISOString(),
+      ts: nowIso(),
       props: props || {}
     };
     var body = JSON.stringify(payload);
